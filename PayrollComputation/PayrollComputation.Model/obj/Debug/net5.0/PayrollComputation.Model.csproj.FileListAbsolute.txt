@@ -1,0 +1,15 @@
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\bin\Debug\net5.0\PayrollComputation.Model.deps.json
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\bin\Debug\net5.0\PayrollComputation.Model.runtimeconfig.json
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\bin\Debug\net5.0\PayrollComputation.Model.runtimeconfig.dev.json
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\bin\Debug\net5.0\PayrollComputation.Model.dll
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\bin\Debug\net5.0\ref\PayrollComputation.Model.dll
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\bin\Debug\net5.0\PayrollComputation.Model.pdb
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\obj\Debug\net5.0\PayrollComputation.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\obj\Debug\net5.0\PayrollComputation.Model.AssemblyInfoInputs.cache
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\obj\Debug\net5.0\PayrollComputation.Model.AssemblyInfo.cs
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\obj\Debug\net5.0\PayrollComputation.Model.csproj.CoreCompileInputs.cache
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\obj\Debug\net5.0\PayrollComputation.Model.dll
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\obj\Debug\net5.0\ref\PayrollComputation.Model.dll
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\obj\Debug\net5.0\PayrollComputation.Model.pdb
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\obj\Debug\net5.0\PayrollComputation.Model.genruntimeconfig.cache
+C:\Users\hp\Desktop\MyProjects\PayrollComputation\PayrollComputation.Model\obj\Debug\net5.0\PayrollComputation.Model.csproj.AssemblyReference.cache
