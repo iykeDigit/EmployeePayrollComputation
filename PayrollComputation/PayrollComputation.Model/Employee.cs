@@ -16,6 +16,7 @@ namespace PayrollComputation.Model
         [Required, MaxLength(50)]
         public string LastName { get; set; }
         public string FullName { get; set; }
+        public string Email { get; set; }
         public string Gender { get; set; }
         public string ImageUrl { get; set; }
         public DateTime DOB { get; set; }
@@ -25,6 +26,7 @@ namespace PayrollComputation.Model
         public string NationalInsuranceNo { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public StudentLoan  StudentLoan { get; set; }
+        public string PhoneNumber { get; set; }
         public UnionMember UnionMember { get; set; }
         [Required, MaxLength(150)]
         public string Address { get; set; }

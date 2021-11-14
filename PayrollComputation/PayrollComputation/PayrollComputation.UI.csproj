@@ -20,4 +20,8 @@
     <ProjectReference Include="..\PayrollComputation.Services\PayrollComputation.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Employee\" />
+  </ItemGroup>
+
 </Project>
