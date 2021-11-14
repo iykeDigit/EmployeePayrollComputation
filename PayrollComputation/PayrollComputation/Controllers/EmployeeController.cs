@@ -91,5 +91,83 @@ namespace PayrollComputation.UI.Controllers
             return View();
             
         }
+
+        [HttpGet]
+        public IActionResult Edit(string id) 
+        {
+            var employee = _employeeService.GetById(id);
+            if(employee == null) 
+            {
+                return NotFound();
+            }
+
+            var model = new EditEmployeeVM()
+            {
+                Id = employee.Id,
+                EmployeeNo = employee.EmployeeNo,
+                FirstName = employee.FirstName,
+                MiddleName = employee.MiddleName,
+                LastName = employee.LastName,
+                Gender = employee.Gender,
+                Email = employee.Email,
+                DOB = employee.DOB,
+                ResumptionDate = employee.ResumptionDate,
+                NationalInsuranceNo = employee.NationalInsuranceNo,
+                PaymentMethod = employee.PaymentMethod,
+                StudentLoan = employee.StudentLoan,
+                UnionMember = employee.UnionMember,
+                Address = employee.Address,
+                City = employee.City,
+                PhoneNumber = employee.PhoneNumber,
+                Postcode = employee.Postcode,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(EditEmployeeVM model) 
+        {
+            if (ModelState.IsValid) 
+            {
+                var employee = _employeeService.GetById(model.Id);
+                if (employee == null) 
+                {
+                    return NotFound();
+                }
+                employee.EmployeeNo = model.EmployeeNo;
+                employee.FirstName = model.FirstName;
+                employee.LastName = model.LastName;
+                employee.MiddleName = model.MiddleName;
+                employee.NationalInsuranceNo = model.NationalInsuranceNo;
+                employee.Gender = model.Gender;
+                employee.Email = model.Email;
+                employee.DOB = model.DOB;
+                employee.ResumptionDate = model.ResumptionDate;
+                employee.PaymentMethod = model.PaymentMethod;
+                employee.StudentLoan = model.StudentLoan;
+                employee.UnionMember = model.UnionMember;
+                employee.Address = model.Address;
+                employee.City = model.City;
+                employee.Postcode = model.Postcode;
+
+                if (model.ImageUrl != null && model.ImageUrl.Length > 0)
+                {
+                    var uploadDirectory = @"images/employee";
+                    var fileName = Path.GetFileNameWithoutExtension(model.ImageUrl.FileName);
+                    var extension = Path.GetExtension(model.ImageUrl.FileName);
+                    var webRootPath = _hostingEnvironment.WebRootPath;
+                    fileName = Guid.NewGuid() + fileName + extension;
+                    var path = Path.Combine(webRootPath, uploadDirectory, fileName);
+                    await model.ImageUrl.CopyToAsync(new FileStream(path, FileMode.Create));
+                    employee.ImageUrl = "/" + uploadDirectory + "" + fileName;
+                }
+
+                await _employeeService.UpdateAsync(employee);
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
     }
 }
