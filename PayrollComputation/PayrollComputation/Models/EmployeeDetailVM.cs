@@ -1,8 +1,9 @@
-﻿using System;
+﻿using PayrollComputation.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace PayrollComputation.Model
+namespace PayrollComputation.UI.Models
 {
     public class EmployeeDetailVM
     {

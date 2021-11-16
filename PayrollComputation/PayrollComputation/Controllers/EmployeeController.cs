@@ -23,19 +23,41 @@ namespace PayrollComputation.UI.Controllers
         }
         public IActionResult Index()
         {
-            var employees = _employeeService.GetAll().Select(employee => new EmployeeDetailVM 
-            {
-                Id = employee.Id,
-                EmployeeNo = employee.EmployeeNo,
-                ImageUrl = employee.ImageUrl,
-                FullName = employee.FullName,
-                Gender = employee.Gender,
-                Designation = employee.Designation,
-                City = employee.City,
-                ResumptionDate = employee.ResumptionDate
+            var employees = _employeeService.GetAll();
+            List<EmployeeIndexVM> list = new List<EmployeeIndexVM>();
 
-            }).ToList();
-            return View(employees);
+            foreach(var employee in employees) 
+            {
+                var obj = new EmployeeIndexVM();
+                obj.Id = employee.Id;
+                obj.EmployeeNo = employee.EmployeeNo;
+                obj.ImageUrl = employee.ImageUrl;
+                obj.FullName = employee.FullName;
+                obj.Gender = employee.Gender;
+                obj.Designation = employee.Designation;
+                obj.City = employee.City;
+                obj.ResumptionDate = employee.ResumptionDate;
+
+                list.Add(obj);
+            }
+
+
+
+            //var employees = _employeeService.GetAll().Select(employee => new EmployeeDetailVM 
+            //{
+            //    Id = employee.Id,
+            //    EmployeeNo = employee.EmployeeNo,
+            //    ImageUrl = employee.ImageUrl,
+            //    FullName = employee.FullName,
+            //    Gender = employee.Gender,
+            //    Designation = employee.Designation,
+            //    City = employee.City,
+            //    ResumptionDate = employee.ResumptionDate
+
+            //}).ToList();
+
+
+            return View(list);
         }
 
         [HttpGet]
@@ -53,7 +75,7 @@ namespace PayrollComputation.UI.Controllers
             {
                 var employee = new Employee
                 {
-                    Id = model.Id,
+                    Id = Guid.NewGuid().ToString(),
                     EmployeeNo = model.EmployeeNo,
                     FirstName = model.FirstName,
                     MiddleName = model.MiddleName,
@@ -62,6 +84,7 @@ namespace PayrollComputation.UI.Controllers
                     Gender = model.Gender,
                     Email = model.Email,
                     DOB = model.DOB,
+                    Designation = model.Designation,
                     ResumptionDate = model.ResumptionDate,
                     NationalInsuranceNo = model.NationalInsuranceNo,
                     PaymentMethod = model.PaymentMethod,
@@ -75,7 +98,7 @@ namespace PayrollComputation.UI.Controllers
 
                 if(model.ImageUrl != null && model.ImageUrl.Length > 0)
                 {
-                    var uploadDirectory = @"images/employee";
+                    var uploadDirectory = @"images/employee/";
                     var fileName = Path.GetFileNameWithoutExtension(model.ImageUrl.FileName);
                     var extension = Path.GetExtension(model.ImageUrl.FileName);
                     var webRootPath = _hostingEnvironment.WebRootPath;
@@ -145,6 +168,7 @@ namespace PayrollComputation.UI.Controllers
                 employee.Email = model.Email;
                 employee.DOB = model.DOB;
                 employee.ResumptionDate = model.ResumptionDate;
+                employee.Designation = model.Designation;
                 employee.PaymentMethod = model.PaymentMethod;
                 employee.StudentLoan = model.StudentLoan;
                 employee.UnionMember = model.UnionMember;
@@ -197,14 +221,14 @@ namespace PayrollComputation.UI.Controllers
                 ImageUrl = employee.ImageUrl,
                 Postcode = employee.Postcode
                 };
-            return View();
+            return View(model);
         }
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(string employeeId) 
+        //[ValidateAntiForgeryToken]
+        public IActionResult DeleteEmployee(string id) 
         {
-            var employee = _employeeService.GetById(employeeId);
+            var employee = _employeeService.GetById(id);
             if(employee == null) 
             {
                 return NotFound();
@@ -220,7 +244,7 @@ namespace PayrollComputation.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(DeleteEmployeeVM model) 
+        public async Task<IActionResult> DeleteEmployee(DeleteEmployeeVM model) 
         {
             await _employeeService.Delete(model.Id);
             return RedirectToAction(nameof(Index));

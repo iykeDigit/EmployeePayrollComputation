@@ -792,3 +792,9 @@ C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\Pay
 C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\ref\PayrollComputation.UI.dll
 C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\PayrollComputation.UI.pdb
 C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\PayrollComputation.UI.genruntimeconfig.cache
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Employee\Index.cshtml.g.cs
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Employee\Create.cshtml.g.cs
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Employee\Edit.cshtml.g.cs
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Employee\EmployeeDetail.cshtml.g.cs
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Employee\DeleteEmployee.cshtml.g.cs

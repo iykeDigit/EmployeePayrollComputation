@@ -11,8 +11,7 @@ namespace PayrollComputation.UI.Models
     public class EditEmployeeVM
     {
         public string Id { get; set; }
-        [Required(ErrorMessage = "Employee Number is requred"),
-            RegularExpression("^[A-Z]{3,3}[0-9]{3}$")]
+        [Required(ErrorMessage = "Employee Number is requred")]
         public int EmployeeNo { get; set; }
         [Required(ErrorMessage ="First Name is required"), StringLength(50, MinimumLength =2)]
         [RegularExpression(@"^[A-Z][a-zA-Z""'\s-]*$"), Display(Name = "First Name")]
