@@ -13,6 +13,8 @@ namespace PayrollComputation.Services.Implementations
     {
         private readonly ApplicationDbContext _db;
         private decimal studentLoanAmount;
+       
+
         public EmployeeService(ApplicationDbContext db)
         {
             _db = db;
@@ -63,7 +65,10 @@ namespace PayrollComputation.Services.Implementations
 
         public decimal UnionFees(string id)
         {
-            throw new NotImplementedException();
+            var employee = GetById(id);
+            var fee = employee.UnionMember == UnionMember.Yes ? 10m : 0m;
+            return fee;
+            
         }
 
         public async Task UpdateAsync(Employee employee)
