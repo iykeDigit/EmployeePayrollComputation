@@ -20,6 +20,7 @@ namespace PayrollComputation.Services.Interfaces
         decimal TotalEarnings(decimal overtimeEarnings, decimal contractualEarnings);
         decimal TotalDeduction(decimal tax, decimal nic, decimal studentLoanRepayment, decimal unionFees);
         decimal NetPay(decimal totalEarnings, decimal totalDeduction);
+        decimal OvertimeRate(decimal hourlyRate);
 
     }
 }
