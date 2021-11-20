@@ -15,7 +15,7 @@ namespace PayrollComputation.Services.Interface
         Task Delete(string employeeId);
         Task UpdateAsync(string employeeId);
         decimal UnionFees(string id);
-        decimal StudentLoanRepaymentAmount(int id, decimal totalAmount);
+        decimal StudentLoanRepaymentAmount(string id, decimal totalAmount);
         IEnumerable<Employee> GetAll();
 
     }

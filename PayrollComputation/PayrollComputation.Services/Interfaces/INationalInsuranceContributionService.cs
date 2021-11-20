@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PayrollComputation.Services.Interfaces
 {
-    public interface INationalInsuranceContribution
+    public interface INationalInsuranceContributionService
     {
         decimal NIContribution(decimal totalAmount);
     }
