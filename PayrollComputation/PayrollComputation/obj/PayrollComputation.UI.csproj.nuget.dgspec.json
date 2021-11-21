@@ -313,6 +313,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "RotativaCore": {
+              "target": "Package",
+              "version": "[3.0.0, )"
             }
           },
           "imports": [

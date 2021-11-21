@@ -10,6 +10,7 @@ using PayrollComputation.Data;
 using PayrollComputation.Model;
 using PayrollComputation.Services.Implementations;
 using PayrollComputation.Services.Interface;
+using PayrollComputation.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,9 @@ namespace PayrollComputation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IPayComputationService, PayComputationService>();
+            services.AddScoped<INationalInsuranceContributionService, NationalInsuranceContributionService>();
+            services.AddScoped<ITaxService, TaxService>();
             services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

@@ -2,12 +2,12 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Paycompute.Models
+namespace PayrollComputation.UI.Models
 {
     public class PaymentRecordDetailVM
     {
-        public int Id { get; set; }        
-        public int EmployeeId { get; set; }
+        public string Id { get; set; }        
+        public string EmployeeId { get; set; }
         public Employee Employee { get; set; }
         [Display(Name = "Employee")]
         public string FullName { get; set; }
@@ -17,7 +17,7 @@ namespace Paycompute.Models
         [Display(Name = "Pay Month")]
         public string PayMonth { get; set; }
         [Display(Name = "Tax Year")]
-        public int TaxYearId { get; set; }
+        public string TaxYearId { get; set; }
         public string Year { get; set; }
         public TaxYear TaxYear { get; set; }
         [Display(Name = "Tax Code")]

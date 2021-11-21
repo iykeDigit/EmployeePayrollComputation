@@ -3,6 +3,7 @@ using PayrollComputation.Model;
 using PayrollComputation.Services.Interface;
 using PayrollComputation.Services.Interfaces;
 using PayrollComputation.UI.Models;
+using RotativaCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace PayrollComputation.UI.Controllers
 {
     public class PayController : Controller
     {
-        private readonly IPayComputation _payComputationService;
+        private readonly IPayComputationService _payComputationService;
         private IEmployeeService _employeeService;
         private decimal overtimeHrs;
         private decimal contractualEarnings;
@@ -26,7 +27,7 @@ namespace PayrollComputation.UI.Controllers
         private decimal nationalInsurance;
         private decimal totalDeduction;
 
-        public PayController(IPayComputation payComputationService, IEmployeeService employeeService, 
+        public PayController(IPayComputationService payComputationService, IEmployeeService employeeService, 
             ITaxService taxService, INationalInsuranceContributionService nationalInsuranceContributionService)
         {
             _payComputationService = payComputationService;
@@ -45,6 +46,7 @@ namespace PayrollComputation.UI.Controllers
                 PayMonth = pay.PayMonth,
                 TaxYearId = pay.TaxYearId,
                 Year = _payComputationService.GetTaxYearById(pay.TaxYearId).YearofTax,
+                TotalDeduction = pay.TotalDeduction,
                 TotalEarnings = pay.TotalEarnings,
                 NetPayment = pay.NetPayment,
                 Employee = pay.Employee
@@ -68,7 +70,7 @@ namespace PayrollComputation.UI.Controllers
             {
                 var payRecord = new PaymentRecord()
                 {
-                    Id = model.Id,
+                    Id = Guid.NewGuid().ToString(),
                     EmployeeId = model.EmployeeId,
                     FullName = _employeeService.GetById(model.EmployeeId).FullName,
                     NiNo = _employeeService.GetById(model.EmployeeId).NationalInsuranceNo,
@@ -90,12 +92,99 @@ namespace PayrollComputation.UI.Controllers
                     TotalDeduction = totalDeduction = _payComputationService.TotalDeduction(tax, nationalInsurance, studentLoan, unionFee),
                     NetPayment = _payComputationService.NetPay(totalEarnings, totalDeduction)
                 };
-                _payComputationService.CreateAsync(payRecord);
+                await _payComputationService.CreateAsync(payRecord);
                 return RedirectToAction(nameof(Index));
             }
             ViewBag.employees = _employeeService.GetAllEmployeesForPayroll();
             ViewBag.taxYears = _payComputationService.GetAllTaxYear();
             return View();
         }
+
+        public IActionResult Detail(string id) 
+        {
+            var paymentRecord = _payComputationService.GetById(id);
+
+            if (paymentRecord == null)
+                return NotFound();
+
+            var model = new PaymentRecordDetailVM() 
+            {
+                Id = paymentRecord.Id,
+                EmployeeId = paymentRecord.EmployeeId,
+                FullName = paymentRecord.FullName,
+                NiNo = paymentRecord.NiNo,
+                PayDate = paymentRecord.PayDate,
+                PayMonth = paymentRecord.PayMonth,
+                TaxYearId = paymentRecord.TaxYearId,
+                Year = _payComputationService.GetTaxYearById(paymentRecord.TaxYearId).YearofTax,
+                TaxCode = paymentRecord.TaxCode,
+                HourlyRate = paymentRecord.HourlyRate,
+                HoursWorked = paymentRecord.HoursWorked,
+                ContractualHours = paymentRecord.ContractualHours,
+                OvertimeHours = paymentRecord.OvertimeHours,
+                OvertimeRate = _payComputationService.OvertimeRate(paymentRecord.HourlyRate),
+                ContractualEarnings = paymentRecord.OvertimeEarnings,
+                OvertimeEarnings = paymentRecord.OvertimeEarnings,
+                Tax = paymentRecord.Tax,
+                NIC = paymentRecord.NIC,
+                UnionFee = paymentRecord.UnionFee,
+                SLC = paymentRecord.SLC,
+                TotalEarnings = paymentRecord.TotalEarnings,
+                TotalDeduction = paymentRecord.TotalDeduction,
+                Employee = paymentRecord.Employee,
+                TaxYear = paymentRecord.TaxYear,
+                NetPayment = paymentRecord.NetPayment
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult PaySlip(string id)
+        {
+            var paymentRecord = _payComputationService.GetById(id);
+
+            if (paymentRecord == null)
+                return NotFound();
+
+            var model = new PaymentRecordDetailVM()
+            {
+                Id = paymentRecord.Id,
+                EmployeeId = paymentRecord.EmployeeId,
+                FullName = paymentRecord.FullName,
+                NiNo = paymentRecord.NiNo,
+                PayDate = paymentRecord.PayDate,
+                PayMonth = paymentRecord.PayMonth,
+                TaxYearId = paymentRecord.TaxYearId,
+                Year = _payComputationService.GetTaxYearById(paymentRecord.TaxYearId).YearofTax,
+                TaxCode = paymentRecord.TaxCode,
+                HourlyRate = paymentRecord.HourlyRate,
+                HoursWorked = paymentRecord.HoursWorked,
+                ContractualHours = paymentRecord.ContractualHours,
+                OvertimeHours = paymentRecord.OvertimeHours,
+                OvertimeRate = _payComputationService.OvertimeRate(paymentRecord.HourlyRate),
+                ContractualEarnings = paymentRecord.OvertimeEarnings,
+                OvertimeEarnings = paymentRecord.OvertimeEarnings,
+                Tax = paymentRecord.Tax,
+                NIC = paymentRecord.NIC,
+                UnionFee = paymentRecord.UnionFee,
+                SLC = paymentRecord.SLC,
+                TotalEarnings = paymentRecord.TotalEarnings,
+                TotalDeduction = paymentRecord.TotalDeduction,
+                Employee = paymentRecord.Employee,
+                TaxYear = paymentRecord.TaxYear,
+                NetPayment = paymentRecord.NetPayment
+            };
+            return View(model);
+        }
+
+        public IActionResult GeneratePayslipPdf(string id) 
+        {
+            var payslip = new ActionAsPdf("Payslip", new { id = id })
+            {
+                FileName = "payslip.pdf"
+            };
+            return payslip;
+        }
     }
+
 }

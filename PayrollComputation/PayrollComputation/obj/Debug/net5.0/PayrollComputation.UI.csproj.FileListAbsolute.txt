@@ -798,3 +798,12 @@ C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\Pay
 C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Employee\Edit.cshtml.g.cs
 C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Employee\EmployeeDetail.cshtml.g.cs
 C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Employee\DeleteEmployee.cshtml.g.cs
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Pay\Create.cshtml.g.cs
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Pay\Detail.cshtml.g.cs
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Pay\Index.cshtml.g.cs
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\obj\Debug\net5.0\Razor\Views\Pay\Payslip.cshtml.g.cs
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\bin\Debug\net5.0\WKHtmlToPdf\wkhtmltoimage.exe
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\bin\Debug\net5.0\WKHtmlToPdf\wkhtmltopdf.exe
+C:\Users\hp\Desktop\MyProjects\EmployeePayrollComputation\PayrollComputation\PayrollComputation\bin\Debug\net5.0\RotativaCore.dll

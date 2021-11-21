@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PayrollComputation.Services.Implementations
 {
-    public class PayComputationService : IPayComputation
+    public class PayComputationService : IPayComputationService
     {
         private readonly ApplicationDbContext _db;
         private decimal contractualEarnings;
