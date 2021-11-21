@@ -1,4 +1,5 @@
-﻿using PayrollComputation.Data;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using PayrollComputation.Data;
 using PayrollComputation.Model;
 using PayrollComputation.Services.Interface;
 using System;
@@ -82,6 +83,15 @@ namespace PayrollComputation.Services.Implementations
             var employee = GetById(employeeId);
             _db.Update(employee);
             await _db.SaveChangesAsync();
+        }
+
+        public IEnumerable<SelectListItem> GetAllEmployeesForPayroll() 
+        {
+            return GetAll().Select(emp => new SelectListItem()
+            {
+                Text = emp.FullName,
+                Value = emp.Id.ToString()
+            });
         }
     }
 }

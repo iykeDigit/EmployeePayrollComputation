@@ -1,4 +1,5 @@
-﻿using PayrollComputation.Model;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using PayrollComputation.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace PayrollComputation.Services.Interface
         decimal UnionFees(string id);
         decimal StudentLoanRepaymentAmount(string id, decimal totalAmount);
         IEnumerable<Employee> GetAll();
+        IEnumerable<SelectListItem> GetAllEmployeesForPayroll();
 
     }
 }

@@ -12,7 +12,7 @@ namespace PayrollComputation.Model
         public Employee Employee { get; set; }
         [MaxLength(100)]
         public string FullName { get; set; }
-        public string Nino { get; set; }
+        public string NiNo { get; set; }
         public DateTime PayDate { get; set; }
         public string PayMonth { get; set; }
         [ForeignKey("TaxYear")]

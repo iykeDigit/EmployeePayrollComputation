@@ -78,5 +78,7 @@ namespace PayrollComputation.Services.Implementations
 
         public decimal TotalEarnings(decimal overtimeEarnings, decimal contractualEarnings)
             => overtimeEarnings + contractualEarnings;
+        public TaxYear GetTaxYearById(string id)
+            => _db.TaxYears.Where(year => year.Id == id).FirstOrDefault();
     }
 }

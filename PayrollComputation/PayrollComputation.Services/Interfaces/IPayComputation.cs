@@ -21,6 +21,6 @@ namespace PayrollComputation.Services.Interfaces
         decimal TotalDeduction(decimal tax, decimal nic, decimal studentLoanRepayment, decimal unionFees);
         decimal NetPay(decimal totalEarnings, decimal totalDeduction);
         decimal OvertimeRate(decimal hourlyRate);
-
+        TaxYear GetTaxYearById(string id);
     }
 }
