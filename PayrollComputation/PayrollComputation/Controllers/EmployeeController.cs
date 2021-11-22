@@ -21,7 +21,7 @@ namespace PayrollComputation.UI.Controllers
             _employeeService = employeeService;
             _hostingEnvironment = hostingEnvironment;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? pageNumber)
         {
             var employees = _employeeService.GetAll();
             List<EmployeeIndexVM> list = new List<EmployeeIndexVM>();
@@ -56,8 +56,9 @@ namespace PayrollComputation.UI.Controllers
 
             //}).ToList();
 
+            int pageSize = 4;
 
-            return View(list);
+            return View(EmployeeListPagination<EmployeeIndexVM>.Create(list, pageNumber ?? 1, pageSize));
         }
 
         [HttpGet]

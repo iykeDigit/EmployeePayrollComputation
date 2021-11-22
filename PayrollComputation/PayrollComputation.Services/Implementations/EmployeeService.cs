@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using PayrollComputation.Data;
 using PayrollComputation.Model;
 using PayrollComputation.Services.Interface;
@@ -27,7 +28,8 @@ namespace PayrollComputation.Services.Implementations
             await _db.SaveChangesAsync();
         }
 
-        public IEnumerable<Employee> GetAll() => _db.Employees;
+        public IEnumerable<Employee> GetAll() => _db.Employees.AsNoTracking().
+            OrderBy(emp => emp.FullName);
 
         public Employee GetById(string employeeId) => _db.Employees.Where(e => e.Id == employeeId).FirstOrDefault();
 
