@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PayrollComputation.Model;
 using PayrollComputation.Services.Interface;
 using PayrollComputation.Services.Interfaces;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace PayrollComputation.UI.Controllers
 {
+    [Authorize(Roles = "Admin, Manager")]
+
     public class PayController : Controller
     {
         private readonly IPayComputationService _payComputationService;
@@ -54,6 +57,8 @@ namespace PayrollComputation.UI.Controllers
             return View(payRecords);
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create() 
         {
             ViewBag.employees = _employeeService.GetAllEmployeesForPayroll();
@@ -64,6 +69,7 @@ namespace PayrollComputation.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(PaymentRecordIndexVM model) 
         {
             if (ModelState.IsValid) 
@@ -139,6 +145,7 @@ namespace PayrollComputation.UI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult PaySlip(string id)
         {
             var paymentRecord = _payComputationService.GetById(id);

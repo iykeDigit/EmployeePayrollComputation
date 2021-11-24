@@ -37,7 +37,7 @@ namespace PayrollComputation
             services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-
+           
             services.AddIdentity<IdentityUser, IdentityRole>(
                 options =>
                 {
@@ -48,9 +48,14 @@ namespace PayrollComputation
                     options.Password.RequireUppercase = true;
                     options.Password.RequiredLength = 6;
                     options.Password.RequiredUniqueChars = 1;
+                    //Default Lockout settings
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+                    options.Lockout.MaxFailedAccessAttempts = 5;
+                    options.Lockout.AllowedForNewUsers = true;
                 }
               )
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
 
             services.ConfigureApplicationCookie(options => 
@@ -70,7 +75,10 @@ namespace PayrollComputation
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, 
+                            IWebHostEnvironment env, 
+                            UserManager<IdentityUser> userManager, 
+                            RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -87,7 +95,7 @@ namespace PayrollComputation
 
             app.UseRouting();
             app.UseAuthentication();
-
+            Seeder.UserAndRoleSeedAsync(userManager, roleManager).Wait();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
